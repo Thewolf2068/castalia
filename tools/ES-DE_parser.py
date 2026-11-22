@@ -45,19 +45,28 @@ def parseXML(xmlfile: str) -> None:
             if extension not in output["platforms"][platform]["extensions"]:
                 output["platforms"][platform]["extensions"].append(extension)
 
-def get_igdb_ids(client_id: str, bearer_secret: str) -> None:
-    bearer_secret = f"Bearer {bearer_secret}"
-    for platform, data in output["platforms"].items():
-        fullname = data["name"]
-
-
-        headers={'CLIENT-ID': client_id, 'Authorization': bearer_secret }
-
-        x = requests.post(urlPlatforms, headers=headers, data=f'search "{platform}"; fields name, slug;')
+# def get_igdb_ids(client_id: str, bearer_secret: str) -> None:
+#     bearer_secret = f"Bearer {bearer_secret}"
+#     i = 0;
+#     for platform, data in output["platforms"].items():
+#         fullname = data["name"]
+#
+#
+#         headers={'Client-ID': client_id, 'Authorization': bearer_secret }
+#
+#         x = requests.post(urlPlatforms, headers=headers, data=f'search "{fullname}"; fields name, slug;')
+#
+#         returnJson = x.json()
+#         if returnJson:
+#             output["platforms"][platform]["igdb"] = returnJson[0]["id"]
+#             print(f"Response: {returnJson}")
+#         else:
+#             output["platforms"][platform]["igdb"] = None
+#             print(f"No IGDB match found for: {platform}")
+#         if i % 4 == 0:
+#             time.sleep(1)
+#         i = i + 1
         
-        returnJson = x.json()
-        output["platforms"][platform]["igdb"] = returnJson[0]["id"]
-        time.sleep(1)
 
         
 
@@ -73,7 +82,7 @@ def main():
 
     parseXML("es_systems.xml")
 
-    get_igdb_ids(sys.argv[1], sys.argv[2])
+    # get_igdb_ids(sys.argv[1], sys.argv[2])
 
     with open("platforms.toml", "w") as f:
         toml.dump(output, f)

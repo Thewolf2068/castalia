@@ -1,0 +1,874 @@
+[platforms.3do]
+name = "3DO Interactive Multiplayer"
+extensions = [ ".bin", ".chd", ".cue", ".iso", ".7z", ".zip",]
+igdb = 50
+
+[platforms.adam]
+name = "Coleco Adam"
+extensions = [ ".1dd", ".bin", ".col", ".cqi", ".cqm", ".d77", ".d88", ".ddp", ".dfi", ".dsk", ".hfe", ".imd", ".mfi", ".mfm", ".rom", ".td0", ".wav", ".7z", ".zip",]
+
+[platforms.ags]
+name = "Adventure Game Studio Game Engine"
+extensions = [ ".desktop", ".sh",]
+
+[platforms.amiga]
+name = "Commodore Amiga"
+extensions = [ ".adf", ".adz", ".ccd", ".chd", ".cue", ".dms", ".fdi", ".hdf", ".hdz", ".ipf", ".iso", ".lha", ".m3u", ".mds", ".nrg", ".rp9", ".uae", ".7z", ".zip",]
+igdb = 16
+
+[platforms.amiga1200]
+name = "Commodore Amiga 1200"
+extensions = [ ".adf", ".adz", ".ccd", ".chd", ".cue", ".dms", ".fdi", ".hdf", ".hdz", ".ipf", ".iso", ".lha", ".m3u", ".mds", ".nrg", ".rp9", ".uae", ".7z", ".zip",]
+
+[platforms.amiga600]
+name = "Commodore Amiga 600"
+extensions = [ ".adf", ".adz", ".ccd", ".chd", ".cue", ".dms", ".fdi", ".hdf", ".hdz", ".ipf", ".iso", ".lha", ".m3u", ".mds", ".nrg", ".rp9", ".uae", ".7z", ".zip",]
+
+[platforms.amigacd32]
+name = "Commodore Amiga CD32"
+extensions = [ ".adf", ".adz", ".ccd", ".chd", ".cue", ".dms", ".fdi", ".hdf", ".hdz", ".ipf", ".iso", ".lha", ".m3u", ".mds", ".nrg", ".rp9", ".uae", ".7z", ".zip",]
+igdb = 114
+
+[platforms.amstradcpc]
+name = "Amstrad CPC"
+extensions = [ ".cdt", ".cpr", ".dsk", ".kcr", ".m3u", ".sna", ".tap", ".tar", ".voc", ".7z", ".zip",]
+igdb = 25
+
+[platforms.android]
+name = "Google Android"
+extensions = [ ".7z", ".zip",]
+
+[platforms.androidapps]
+name = "Android Apps"
+extensions = [ ".7z", ".zip",]
+
+[platforms.androidgames]
+name = "Android Games"
+extensions = [ ".7z", ".zip",]
+
+[platforms.apple2]
+name = "Apple II"
+extensions = [ ".do", ".dsk", ".nib", ".po", ".7z", ".zip",]
+igdb = 75
+
+[platforms.apple2gs]
+name = "Apple IIGS"
+extensions = [ ".2mg", ".7z", ".zip",]
+igdb = 115
+
+[platforms.arcade]
+name = "Arcade"
+extensions = [ ".acgame", ".arcadedef", ".cmd", ".desktop", ".gam", ".lindbergh", ".neo", ".sh", ".7z", ".zip",]
+igdb = 52
+
+[platforms.arcadia]
+name = "Emerson Arcadia 2001"
+extensions = [ ".bin", ".tvc", ".7z", ".zip",]
+igdb = 473
+
+[platforms.archimedes]
+name = "Acorn Archimedes"
+extensions = [ ".1dd", ".360", ".adf", ".adl", ".adm", ".ads", ".apd", ".bbc", ".chd", ".cqi", ".cqm", ".d77", ".d88", ".dfi", ".dsd", ".dsk", ".hfe", ".ima", ".imd", ".img", ".ipf", ".jfd", ".mfi", ".mfm", ".msa", ".ssd", ".st", ".td0", ".ufi", ".7z", ".zip",]
+igdb = 116
+
+[platforms.arduboy]
+name = "Arduboy Miniature Game System"
+extensions = [ ".arduboy", ".hex", ".7z", ".zip",]
+igdb = 438
+
+[platforms.astrocde]
+name = "Bally Astrocade"
+extensions = [ ".7z", ".zip",]
+igdb = 91
+
+[platforms.atari2600]
+name = "Atari 2600"
+extensions = [ ".a26", ".bin", ".7z", ".zip",]
+igdb = 59
+
+[platforms.atari5200]
+name = "Atari 5200"
+extensions = [ ".a52", ".atr", ".atx", ".bin", ".car", ".cas", ".cdm", ".com", ".rom", ".xex", ".xfd", ".7z", ".zip",]
+igdb = 66
+
+[platforms.atari7800]
+name = "Atari 7800 ProSystem"
+extensions = [ ".a78", ".bin", ".7z", ".zip",]
+igdb = 60
+
+[platforms.atari800]
+name = "Atari 800"
+extensions = [ ".a52", ".atr", ".atx", ".bin", ".car", ".cas", ".cdm", ".com", ".rom", ".xex", ".xfd", ".7z", ".zip",]
+
+[platforms.atarijaguar]
+name = "Atari Jaguar"
+extensions = [ ".abs", ".bigpimg", ".bin", ".cdi", ".cof", ".cue", ".j64", ".jag", ".prg", ".rom", ".7z", ".zip",]
+igdb = 62
+
+[platforms.atarijaguarcd]
+name = "Atari Jaguar CD"
+extensions = [ ".abs", ".bigpimg", ".bin", ".cdi", ".cof", ".cue", ".j64", ".jag", ".prg", ".rom",]
+igdb = 410
+
+[platforms.atarilynx]
+name = "Atari Lynx"
+extensions = [ ".lnx", ".lyx", ".o", ".7z", ".zip",]
+igdb = 61
+
+[platforms.atarist]
+name = "Atari ST"
+extensions = [ ".st", ".msa", ".stx", ".dim", ".ipf", ".m3u", ".7z", ".zip",]
+igdb = 63
+
+[platforms.atarixe]
+name = "Atari XE"
+extensions = [ ".a52", ".atr", ".atx", ".bin", ".car", ".cas", ".cdm", ".com", ".rom", ".xex", ".xfd", ".7z", ".zip",]
+
+[platforms.atomiswave]
+name = "Sammy Corporation Atomiswave"
+extensions = [ ".bin", ".dat", ".elf", ".lst", ".7z", ".zip",]
+
+[platforms.bbcmicro]
+name = "Acorn Computers BBC Micro"
+extensions = [ ".dsd", ".img", ".ssd", ".7z", ".zip",]
+igdb = 69
+
+[platforms.c64]
+name = "Commodore 64"
+extensions = [ ".bin", ".cmd", ".crt", ".d2m", ".d4m", ".d64", ".d6z", ".d71", ".d7z", ".d80", ".d81", ".d82", ".d8z", ".g41", ".g4z", ".g64", ".g6z", ".gz", ".lnx", ".m3u", ".nbz", ".nib", ".p00", ".prg", ".t64", ".tap", ".vfl", ".vsf", ".x64", ".x6z", ".7z", ".zip",]
+igdb = 15
+
+[platforms.cdimono1]
+name = "Philips CD-i"
+extensions = [ ".chd", ".cue", ".iso",]
+igdb = 117
+
+[platforms.cdtv]
+name = "Commodore CDTV"
+extensions = [ ".adf", ".adz", ".ccd", ".chd", ".cue", ".dms", ".fdi", ".hdf", ".hdz", ".ipf", ".iso", ".lha", ".m3u", ".mds", ".nrg", ".rp9", ".uae", ".7z", ".zip",]
+igdb = 158
+
+[platforms.chailove]
+name = "ChaiLove Game Engine"
+extensions = [ ".chai", ".chailove", ".7z", ".zip",]
+
+[platforms.channelf]
+name = "Fairchild Channel F"
+extensions = [ ".bin", ".chf", ".7z", ".zip",]
+igdb = 127
+
+[platforms.coco]
+name = "Tandy Color Computer"
+extensions = [ ".cas", ".ccc", ".dsk", ".rom",]
+
+[platforms.colecovision]
+name = "Coleco ColecoVision"
+extensions = [ ".bin", ".cas", ".col", ".cv", ".dsk", ".m3u", ".mx1", ".mx2", ".myv", ".ri", ".rom", ".sc", ".sg", ".7z", ".zip",]
+igdb = 68
+
+[platforms.consolearcade]
+name = "Console Arcade Systems"
+extensions = [ ".acgame", ".arcadedef", ".desktop", ".iso", ".ps3", ".sh", ".xbe", ".7z", ".zip",]
+
+[platforms.cps]
+name = "Capcom Play System"
+extensions = [ ".7z", ".zip",]
+
+[platforms.cps1]
+name = "Capcom Play System I"
+extensions = [ ".7z", ".zip",]
+
+[platforms.cps2]
+name = "Capcom Play System II"
+extensions = [ ".7z", ".zip",]
+
+[platforms.cps3]
+name = "Capcom Play System III"
+extensions = [ ".7z", ".zip",]
+
+[platforms.crvision]
+name = "VTech CreatiVision"
+extensions = [ ".bin", ".rom", ".7z", ".zip",]
+
+[platforms.daphne]
+name = "Daphne Arcade LaserDisc Emulator"
+extensions = [ ".daphne", ".dirksimple", ".mmi", ".ogv", ".singe", ".7z", ".zip",]
+
+[platforms.desktop]
+name = "Desktop Applications"
+extensions = [ ".appimage", ".desktop", ".sh",]
+
+[platforms.doom]
+name = "Doom"
+extensions = [ ".desktop", ".ipk3", ".iwad", ".pk3", ".pk4", ".pwad", ".sh", ".wad",]
+
+[platforms.dos]
+name = "DOS (PC)"
+extensions = [ ".bat", ".com", ".conf", ".cue", ".dosz", ".exe", ".img", ".iso", ".7z", ".zip",]
+igdb = 13
+
+[platforms.dragon32]
+name = "Dragon Data Dragon 32"
+extensions = [ ".cas", ".ccc", ".dsk", ".rom", ".7z", ".zip",]
+igdb = 153
+
+[platforms.dreamcast]
+name = "Sega Dreamcast"
+extensions = [ ".cdi", ".chd", ".cue", ".dat", ".elf", ".gdi", ".iso", ".lst", ".m3u", ".7z", ".zip",]
+igdb = 23
+
+[platforms.easyrpg]
+name = "EasyRPG Game Engine"
+extensions = [ ".easyrpg", ".zip",]
+
+[platforms.electron]
+name = "Acorn Electron"
+extensions = [ ".1dd", ".adf", ".adl", ".adm", ".ads", ".bbc", ".bin", ".cqi", ".cqm", ".csw", ".d77", ".d88", ".dfi", ".dsd", ".dsk", ".hfe", ".imd", ".img", ".mfi", ".mfm", ".rom", ".ssd", ".td0", ".uef", ".wav", ".7z", ".zip",]
+igdb = 134
+
+[platforms.emulators]
+name = "Emulators"
+extensions = [ ".appimage", ".desktop", ".sh",]
+
+[platforms.epic]
+name = "Epic Games Store"
+extensions = [ ".desktop", ".sh",]
+
+[platforms.famicom]
+name = "Nintendo Family Computer"
+extensions = [ ".3dsen", ".fds", ".nes", ".unf", ".unif", ".7z", ".zip",]
+igdb = 99
+
+[platforms.fba]
+name = "FinalBurn Alpha"
+extensions = [ ".iso", ".7z", ".zip",]
+
+[platforms.fbneo]
+name = "FinalBurn Neo"
+extensions = [ ".7z", ".zip",]
+
+[platforms.fds]
+name = "Nintendo Famicom Disk System"
+extensions = [ ".nes", ".fds", ".unf", ".unif", ".7z", ".zip",]
+igdb = 51
+
+[platforms.flash]
+name = "Adobe Flash"
+extensions = [ ".ruf", ".swf",]
+
+[platforms.fm7]
+name = "Fujitsu FM-7"
+extensions = [ ".1dd", ".cqi", ".cqm", ".d77", ".d88", ".dfi", ".dsk", ".hfe", ".imd", ".mfi", ".mfm", ".t77", ".td0", ".wav", ".7z", ".zip",]
+igdb = 152
+
+[platforms.fmtowns]
+name = "Fujitsu FM Towns"
+extensions = [ ".cdr", ".chd", ".cue", ".gdi", ".iso",]
+
+[platforms.fpinball]
+name = "Future Pinball"
+extensions = [ ".fpt",]
+
+[platforms.gamate]
+name = "Bit Corporation Gamate"
+extensions = [ ".bin", ".7z", ".zip",]
+igdb = 378
+
+[platforms.gameandwatch]
+name = "Nintendo Game and Watch"
+extensions = [ ".mgw", ".7z", ".zip",]
+igdb = 307
+
+[platforms.gamecom]
+name = "Tiger Electronics Game.com"
+extensions = [ ".tgc", ".7z", ".zip",]
+igdb = 379
+
+[platforms.gamegear]
+name = "Sega Game Gear"
+extensions = [ ".68k", ".bin", ".bms", ".chd", ".col", ".cue", ".gen", ".gg", ".iso", ".m3u", ".md", ".mdx", ".rom", ".sg", ".sgd", ".smd", ".sms", ".7z", ".zip",]
+igdb = 35
+
+[platforms.gb]
+name = "Nintendo Game Boy"
+extensions = [ ".bs", ".cgb", ".dmg", ".gb", ".gbc", ".gbx", ".sgb", ".sfc", ".smc", ".7z", ".zip",]
+igdb = 33
+
+[platforms.gba]
+name = "Nintendo Game Boy Advance"
+extensions = [ ".agb", ".bin", ".cgb", ".dmg", ".gb", ".gba", ".gbc", ".gbx", ".sgb", ".7z", ".zip",]
+igdb = 24
+
+[platforms.gbc]
+name = "Nintendo Game Boy Color"
+extensions = [ ".bs", ".cgb", ".dmg", ".gb", ".gbc", ".gbx", ".sgb", ".sfc", ".smc", ".7z", ".zip",]
+igdb = 22
+
+[platforms.gc]
+name = "Nintendo GameCube"
+extensions = [ ".ciso", ".dff", ".dol", ".elf", ".gcm", ".gcz", ".iso", ".json", ".m3u", ".rvz", ".tgc", ".wad", ".wbfs", ".wia", ".7z", ".zip",]
+igdb = 21
+
+[platforms.genesis]
+name = "Sega Genesis"
+extensions = [ ".32x", ".68k", ".bin", ".bms", ".chd", ".cue", ".gen", ".gg", ".iso", ".m3u", ".md", ".mdx", ".sg", ".sgd", ".smd", ".sms", ".7z", ".zip",]
+igdb = 29
+
+[platforms.gmaster]
+name = "Hartung Game Master"
+extensions = [ ".bin", ".7z", ".zip",]
+
+[platforms.gx4000]
+name = "Amstrad GX4000"
+extensions = [ ".bin", ".cdt", ".cpr", ".dsk", ".kcr", ".m3u", ".sna", ".tap", ".tar", ".voc", ".7z", ".zip",]
+igdb = 506
+
+[platforms.intellivision]
+name = "Mattel Electronics Intellivision"
+extensions = [ ".bin", ".int", ".rom", ".7z", ".zip",]
+igdb = 67
+
+[platforms.j2me]
+name = "Java 2 Micro Edition (J2ME)"
+extensions = [ ".jar", ".7z", ".zip",]
+
+[platforms.kodi]
+name = "Kodi Home Theatre Software"
+extensions = [ ".desktop", ".sh",]
+
+[platforms.laserdisc]
+name = "LaserDisc Games"
+extensions = [ ".daphne", ".dirksimple", ".mmi", ".ogv", ".singe", ".7z", ".zip",]
+
+[platforms.lcdgames]
+name = "LCD Handheld Games"
+extensions = [ ".mgw", ".7z", ".zip",]
+
+[platforms.lowresnx]
+name = "LowRes NX Fantasy Console"
+extensions = [ ".nx",]
+
+[platforms.lutris]
+name = "Lutris Open Gaming Platform"
+extensions = [ ".desktop", ".sh",]
+
+[platforms.lutro]
+name = "Lutro Game Engine"
+extensions = [ ".lua", ".lutro", ".7z", ".zip",]
+
+[platforms.macintosh]
+name = "Apple Macintosh"
+extensions = [ ".dsk", ".game", ".img",]
+
+[platforms.mame]
+name = "Multiple Arcade Machine Emulator"
+extensions = [ ".acgame", ".arcadedef", ".cmd", ".desktop", ".gam", ".lindbergh", ".neo", ".sh", ".7z", ".zip",]
+
+[platforms.mame-advmame]
+name = "AdvanceMAME"
+extensions = [ ".7z", ".zip",]
+
+[platforms.mark3]
+name = "Sega Mark III"
+extensions = [ ".68k", ".bin", ".bms", ".chd", ".col", ".cue", ".gen", ".gg", ".iso", ".m3u", ".md", ".mdx", ".rom", ".sg", ".sgd", ".smd", ".sms", ".7z", ".zip",]
+igdb = 64
+
+[platforms.mastersystem]
+name = "Sega Master System"
+extensions = [ ".68k", ".bin", ".bms", ".chd", ".col", ".cue", ".gen", ".gg", ".iso", ".m3u", ".md", ".mdx", ".rom", ".sg", ".sgd", ".smd", ".sms", ".7z", ".zip",]
+igdb = 64
+
+[platforms.megacd]
+name = "Sega Mega-CD"
+extensions = [ ".68k", ".bin", ".bms", ".chd", ".cue", ".gen", ".gg", ".iso", ".m3u", ".md", ".mdx", ".sg", ".sgd", ".smd", ".sms", ".7z", ".zip",]
+igdb = 78
+
+[platforms.megacdjp]
+name = "Sega Mega-CD"
+extensions = [ ".68k", ".bin", ".bms", ".chd", ".cue", ".gen", ".gg", ".iso", ".m3u", ".md", ".mdx", ".sg", ".sgd", ".smd", ".sms", ".7z", ".zip",]
+
+[platforms.megadrive]
+name = "Sega Mega Drive"
+extensions = [ ".32x", ".68k", ".bin", ".bms", ".chd", ".cue", ".gen", ".gg", ".iso", ".m3u", ".md", ".mdx", ".sg", ".sgd", ".smd", ".sms", ".7z", ".zip",]
+igdb = 29
+
+[platforms.megadrivejp]
+name = "Sega Mega Drive"
+extensions = [ ".32x", ".68k", ".bin", ".bms", ".chd", ".cue", ".gen", ".gg", ".iso", ".m3u", ".md", ".mdx", ".sg", ".sgd", ".smd", ".sms", ".7z", ".zip",]
+
+[platforms.megaduck]
+name = "Creatronic Mega Duck"
+extensions = [ ".bin", ".7z", ".zip",]
+
+[platforms.mess]
+name = "Multi Emulator Super System"
+extensions = [ ".chd", ".7z", ".zip",]
+
+[platforms.model2]
+name = "Sega Model 2"
+extensions = [ ".7z", ".zip",]
+
+[platforms.model3]
+name = "Sega Model 3"
+extensions = [ ".7z", ".zip",]
+
+[platforms.moto]
+name = "Thomson MO/TO Series"
+extensions = [ ".fd", ".k7", ".m5", ".m7", ".rom", ".sap", ".7z", ".zip",]
+
+[platforms.msx]
+name = "MSX"
+extensions = [ ".cas", ".col", ".di1", ".di2", ".dmk", ".dsk", ".fd1", ".fd2", ".m3u", ".mx1", ".mx2", ".ogv", ".ri", ".rom", ".sc", ".sg", ".wav", ".xsa", ".7z", ".zip",]
+igdb = 27
+
+[platforms.msx1]
+name = "MSX1"
+extensions = [ ".cas", ".col", ".di1", ".di2", ".dmk", ".dsk", ".fd1", ".fd2", ".m3u", ".mx1", ".mx2", ".ogv", ".ri", ".rom", ".sc", ".sg", ".wav", ".xsa", ".7z", ".zip",]
+igdb = 27
+
+[platforms.msx2]
+name = "MSX2"
+extensions = [ ".cas", ".col", ".di1", ".di2", ".dmk", ".dsk", ".fd1", ".fd2", ".m3u", ".mx1", ".mx2", ".ogv", ".ri", ".rom", ".sc", ".sg", ".wav", ".xsa", ".7z", ".zip",]
+igdb = 53
+
+[platforms.msxturbor]
+name = "MSX Turbo R"
+extensions = [ ".cas", ".col", ".di1", ".di2", ".dmk", ".dsk", ".fd1", ".fd2", ".m3u", ".mx1", ".mx2", ".ogv", ".ri", ".rom", ".sc", ".sg", ".wav", ".xsa", ".7z", ".zip",]
+
+[platforms.mugen]
+name = "M.U.G.E.N Game Engine"
+extensions = [ ".mugen",]
+
+[platforms.multivision]
+name = "Othello Multivision"
+extensions = [ ".bin", ".gg", ".rom", ".sg", ".sms", ".7z", ".zip",]
+
+[platforms.n3ds]
+name = "Nintendo 3DS"
+extensions = [ ".3ds", ".3dsx", ".app", ".axf", ".cci", ".cxi", ".desktop", ".elf", ".z3dsx", ".zcci", ".zcxi", ".7z", ".zip",]
+igdb = 137
+
+[platforms.n64]
+name = "Nintendo 64"
+extensions = [ ".appimage", ".bin", ".d64", ".desktop", ".n64", ".ndd", ".sh", ".u1", ".v64", ".z64", ".7z", ".zip",]
+igdb = 4
+
+[platforms.n64dd]
+name = "Nintendo 64DD"
+extensions = [ ".bin", ".d64", ".n64", ".ndd", ".u1", ".v64", ".z64", ".7z", ".zip",]
+
+[platforms.naomi]
+name = "Sega NAOMI"
+extensions = [ ".bin", ".dat", ".elf", ".lst", ".7z", ".zip",]
+
+[platforms.naomi2]
+name = "Sega NAOMI 2"
+extensions = [ ".bin", ".dat", ".elf", ".lst", ".7z", ".zip",]
+
+[platforms.naomigd]
+name = "Sega NAOMI GD-ROM"
+extensions = [ ".bin", ".dat", ".elf", ".lst", ".7z", ".zip",]
+
+[platforms.nds]
+name = "Nintendo DS"
+extensions = [ ".app", ".bin", ".dsi", ".ids", ".nds", ".7z", ".zip",]
+igdb = 20
+
+[platforms.neogeo]
+name = "SNK Neo Geo"
+extensions = [ ".neo", ".7z", ".zip",]
+
+[platforms.neogeocd]
+name = "SNK Neo Geo CD"
+extensions = [ ".chd", ".cue",]
+igdb = 136
+
+[platforms.neogeocdjp]
+name = "SNK Neo Geo CD"
+extensions = [ ".chd", ".cue",]
+
+[platforms.nes]
+name = "Nintendo Entertainment System"
+extensions = [ ".3dsen", ".fds", ".nes", ".unf", ".unif", ".7z", ".zip",]
+igdb = 18
+
+[platforms.ngage]
+name = "Nokia N-Gage"
+extensions = [ ".ngage", ".zip",]
+igdb = 42
+
+[platforms.ngp]
+name = "SNK Neo Geo Pocket"
+extensions = [ ".ngc", ".ngp", ".ngpc", ".npc", ".7z", ".zip",]
+igdb = 119
+
+[platforms.ngpc]
+name = "SNK Neo Geo Pocket Color"
+extensions = [ ".ngc", ".ngp", ".ngpc", ".npc", ".7z", ".zip",]
+igdb = 120
+
+[platforms.odyssey2]
+name = "Magnavox Odyssey 2"
+extensions = [ ".bin", ".7z", ".zip",]
+igdb = 133
+
+[platforms.openbor]
+name = "OpenBOR Game Engine"
+extensions = [ ".appimage",]
+
+[platforms.oric]
+name = "Tangerine Computer Systems Oric"
+extensions = [ ".dsk", ".ort", ".tap", ".wav",]
+
+[platforms.palm]
+name = "Palm OS"
+extensions = [ ".img", ".pqa", ".prc", ".7z", ".zip",]
+igdb = 417
+
+[platforms.pc]
+name = "IBM PC"
+extensions = [ ".bat", ".com", ".conf", ".cue", ".dosz", ".exe", ".img", ".iso", ".7z", ".zip",]
+
+[platforms.pc88]
+name = "NEC PC-8800 Series"
+extensions = [ ".88d", ".cmt", ".d88", ".m3u", ".t88", ".u88",]
+
+[platforms.pc98]
+name = "NEC PC-9800 Series"
+extensions = [ ".2hd", ".88d", ".98d", ".d88", ".d98", ".cmd", ".dup", ".fdd", ".fdi", ".hdd", ".hdi", ".hdm", ".hdn", ".m3u", ".nhd", ".tfd", ".thd", ".xdf", ".7z", ".zip",]
+
+[platforms.pcarcade]
+name = "PC Arcade Systems"
+extensions = [ ".appimage", ".desktop", ".exe", ".lindbergh", ".sh",]
+
+[platforms.pcengine]
+name = "NEC PC Engine"
+extensions = [ ".ccd", ".chd", ".cue", ".img", ".iso", ".m3u", ".pce", ".rom", ".sgx", ".toc", ".7z", ".zip",]
+
+[platforms.pcenginecd]
+name = "NEC PC Engine CD"
+extensions = [ ".ccd", ".chd", ".cue", ".img", ".iso", ".m3u", ".pce", ".sgx", ".toc", ".7z", ".zip",]
+
+[platforms.pcfx]
+name = "NEC PC-FX"
+extensions = [ ".ccd", ".chd", ".cue", "cue", ".m3u", ".toc", ".7z", ".zip",]
+
+[platforms.pico8]
+name = "PICO-8 Fantasy Console"
+extensions = [ ".p8", ".png",]
+
+[platforms.plus4]
+name = "Commodore Plus/4"
+extensions = [ ".bin", ".cmd", ".crt", ".d2m", ".d4m", ".d64", ".d6z", ".d71", ".d7z", ".d80", ".d81", ".d82", ".d8z", ".g41", ".g4z", ".g64", ".g6z", ".gz", ".lnx", ".m3u", ".nbz", ".nib", ".p00", ".prg", ".t64", ".tap", ".vfl", ".vsf", ".x64", ".x6z", ".7z", ".zip",]
+igdb = 94
+
+[platforms.pokemini]
+name = "Nintendo Pokémon Mini"
+extensions = [ ".min", ".7z", ".zip",]
+igdb = 166
+
+[platforms.ports]
+name = "Ports"
+extensions = [ ".appimage", ".desktop", ".exe", ".game", ".phd", ".psx", ".sh",]
+
+[platforms.ps2]
+name = "Sony PlayStation 2"
+extensions = [ ".bin", ".chd", ".ciso", ".cso", ".desktop", ".dump", ".elf", ".gz", ".m3u", ".mdf", ".img", ".iso", ".isz", ".ngr", ".nrg", ".zso",]
+igdb = 8
+
+[platforms.ps3]
+name = "Sony PlayStation 3"
+extensions = [ ".desktop", ".iso", ".ps3", ".ps3dir",]
+igdb = 9
+
+[platforms.ps4]
+name = "Sony PlayStation 4"
+extensions = [ ".bin", ".desktop", ".ps4",]
+igdb = 48
+
+[platforms.psp]
+name = "Sony PlayStation Portable"
+extensions = [ ".chd", ".cso", ".elf", ".iso", ".pbp", ".prx", ".7z", ".zip",]
+igdb = 38
+
+[platforms.psvita]
+name = "Sony PlayStation Vita"
+extensions = [ ".psvita",]
+igdb = 46
+
+[platforms.psx]
+name = "Sony PlayStation"
+extensions = [ ".bin", ".cbn", ".ccd", ".chd", ".cue", ".ecm", ".exe", ".img", ".iso", ".m3u", ".mdf", ".mds", ".minipsf", ".pbp", ".psexe", ".psf", ".toc", ".z", ".znx", ".7z", ".zip",]
+igdb = 7
+
+[platforms.pv1000]
+name = "Casio PV-1000"
+extensions = [ ".bin", ".7z", ".zip",]
+
+[platforms.quake]
+name = "Quake"
+extensions = [ ".desktop", ".pak", ".pk3", ".sh",]
+
+[platforms.samcoupe]
+name = "MGT SAM Coupé"
+extensions = [ ".dsk", ".mgt", ".sad", ".sbt", ".7z", ".zip",]
+
+[platforms.satellaview]
+name = "Nintendo Satellaview"
+extensions = [ ".bml", ".bs", ".fig", ".sfc", ".smc", ".swc", ".st", ".7z", ".zip",]
+igdb = 306
+
+[platforms.saturn]
+name = "Sega Saturn"
+extensions = [ ".bin", ".ccd", ".chd", ".cue", ".iso", ".m3u", ".mds", ".toc", ".7z", ".zip",]
+igdb = 32
+
+[platforms.saturnjp]
+name = "Sega Saturn"
+extensions = [ ".bin", ".ccd", ".chd", ".cue", ".iso", ".m3u", ".mds", ".toc", ".7z", ".zip",]
+
+[platforms.scummvm]
+name = "ScummVM Game Engine"
+extensions = [ ".scummvm", ".svm",]
+
+[platforms.scv]
+name = "Epoch Super Cassette Vision"
+extensions = [ ".0", ".bin", ".7z", ".zip",]
+igdb = 376
+
+[platforms.sega32x]
+name = "Sega Mega Drive 32X"
+extensions = [ ".32x", ".68k", ".bin", ".chd", ".cue", ".gen", ".iso", ".m3u", ".md", ".smd", ".sms", ".7z", ".zip",]
+
+[platforms.sega32xjp]
+name = "Sega Super 32X"
+extensions = [ ".32x", ".68k", ".bin", ".chd", ".cue", ".gen", ".iso", ".m3u", ".md", ".smd", ".sms", ".7z", ".zip",]
+
+[platforms.sega32xna]
+name = "Sega Genesis 32X"
+extensions = [ ".32x", ".68k", ".bin", ".chd", ".cue", ".gen", ".iso", ".m3u", ".md", ".smd", ".sms", ".7z", ".zip",]
+
+[platforms.segacd]
+name = "Sega CD"
+extensions = [ ".68k", ".bin", ".bms", ".chd", ".cue", ".gen", ".gg", ".iso", ".m3u", ".md", ".mdx", ".sg", ".sgd", ".smd", ".sms", ".7z", ".zip",]
+igdb = 78
+
+[platforms.sfc]
+name = "Nintendo SFC (Super Famicom)"
+extensions = [ ".bin", ".bml", ".bs", ".bsx", ".dx2", ".fig", ".gd3", ".gd7", ".mgd", ".sfc", ".smc", ".st", ".swc", ".7z", ".zip",]
+igdb = 58
+
+[platforms.sg-1000]
+name = "Sega SG-1000"
+extensions = [ ".68k", ".bin", ".bms", ".chd", ".cue", ".gen", ".gg", ".iso", ".m3u", ".md", ".mdx", ".ri", ".rom", ".sg", ".sgd", ".smd", ".sms", ".7z", ".zip",]
+
+[platforms.sgb]
+name = "Nintendo Super Game Boy"
+extensions = [ ".gb", ".gbc", ".sgb", ".7z", ".zip",]
+
+[platforms.snes]
+name = "Nintendo SNES (Super Nintendo)"
+extensions = [ ".bin", ".bml", ".bs", ".bsx", ".dx2", ".fig", ".gd3", ".gd7", ".mgd", ".sfc", ".smc", ".st", ".swc", ".7z", ".zip",]
+igdb = 19
+
+[platforms.snesna]
+name = "Nintendo SNES (Super Nintendo)"
+extensions = [ ".bin", ".bml", ".bs", ".bsx", ".dx2", ".fig", ".gd3", ".gd7", ".mgd", ".sfc", ".smc", ".st", ".swc", ".7z", ".zip",]
+igdb = 19
+
+[platforms.solarus]
+name = "Solarus Game Engine"
+extensions = [ ".solarus",]
+
+[platforms.spectravideo]
+name = "Spectravideo"
+extensions = [ ".cas", ".col", ".dsk", ".m3u", ".mx1", ".mx2", ".ri", ".rom", ".sc", ".sg", ".7z", ".zip",]
+
+[platforms.steam]
+name = "Valve Steam"
+extensions = [ ".desktop", ".sh",]
+
+[platforms.stv]
+name = "Sega Titan Video Game System"
+extensions = [ ".7z", ".zip",]
+
+[platforms.sufami]
+name = "Bandai SuFami Turbo"
+extensions = [ ".bml", ".bs", ".fig", ".sfc", ".smc", ".st", ".7z", ".zip",]
+
+[platforms.supergrafx]
+name = "NEC SuperGrafx"
+extensions = [ ".ccd", ".chd", ".cue", ".pce", ".rom", ".sgx", ".7z", ".zip",]
+igdb = 128
+
+[platforms.supervision]
+name = "Watara Supervision"
+extensions = [ ".bin", ".sv", ".7z", ".zip",]
+igdb = 415
+
+[platforms.supracan]
+name = "Funtech Super A'Can"
+extensions = [ ".bin", ".7z", ".zip",]
+
+[platforms.switch]
+name = "Nintendo Switch"
+extensions = [ ".nca", ".nro", ".nso", ".nsp", ".xci",]
+igdb = 130
+
+[platforms.symbian]
+name = "Symbian"
+extensions = [ ".sis", ".sisx", ".symbian",]
+
+[platforms.tanodragon]
+name = "Tano Dragon"
+extensions = [ ".cas", ".ccc", ".dsk", ".rom", ".7z", ".zip",]
+
+[platforms.tg16]
+name = "NEC TurboGrafx-16"
+extensions = [ ".ccd", ".chd", ".cue", ".img", ".iso", ".m3u", ".pce", ".rom", ".sgx", ".toc", ".7z", ".zip",]
+igdb = 86
+
+[platforms.tg-cd]
+name = "NEC TurboGrafx-CD"
+extensions = [ ".ccd", ".chd", ".cue", ".img", ".iso", ".m3u", ".pce", ".sgx", ".toc", ".7z", ".zip",]
+igdb = 150
+
+[platforms.ti99]
+name = "Texas Instruments TI-99"
+extensions = [ ".rpk", ".7z", ".zip",]
+igdb = 129
+
+[platforms.tic80]
+name = "TIC-80 Fantasy Computer"
+extensions = [ ".png", ".tic",]
+
+[platforms.to8]
+name = "Thomson TO8"
+extensions = [ ".fd", ".k7", ".m5", ".m7", ".rom", ".sap", ".7z", ".zip",]
+
+[platforms.triforce]
+name = "Namco-Sega-Nintendo Triforce"
+extensions = [ ".ciso", ".dff", ".dol", ".elf", ".gcm", ".gcz", ".iso", ".json", ".m3u", ".rvz", ".tgc", ".wad", ".wbfs", ".wia", ".7z", ".zip",]
+
+[platforms.trs-80]
+name = "Tandy TRS-80"
+extensions = [ ".cmd", ".dsk",]
+
+[platforms.type-x]
+name = "Taito Type X"
+extensions = [ ".appimage", ".desktop", ".exe", ".sh",]
+
+[platforms.uzebox]
+name = "Uzebox Open Source Console"
+extensions = [ ".uze", ".7z", ".zip",]
+igdb = 504
+
+[platforms.vectrex]
+name = "GCE Vectrex"
+extensions = [ ".bin", ".gam", ".vc", ".vec", ".7z", ".zip",]
+igdb = 70
+
+[platforms.vic20]
+name = "Commodore VIC-20"
+extensions = [ ".a0", ".b0", ".bin", ".cmd", ".crt", ".d2m", ".d4m", ".d64", ".d6z", ".d71", ".d7z", ".d80", ".d81", ".d82", ".d8z", ".g41", ".g4z", ".g64", ".g6z", ".gz", ".lnx", ".m3u", ".nbz", ".nib", ".p00", ".prg", ".rom", ".t64", ".tap", ".vfl", ".vsf", ".x64", ".x6z", ".7z", ".zip",]
+igdb = 71
+
+[platforms.videopac]
+name = "Philips Videopac G7000"
+extensions = [ ".bin", ".7z", ".zip",]
+igdb = 133
+
+[platforms.vircon32]
+name = "Vircon32 Virtual Console"
+extensions = [ ".v32", ".7z", ".zip",]
+
+[platforms.virtualboy]
+name = "Nintendo Virtual Boy"
+extensions = [ ".bin", ".vb", ".vboy", ".7z", ".zip",]
+igdb = 87
+
+[platforms.vpinball]
+name = "Visual Pinball"
+extensions = [ ".vpt", ".vpx",]
+
+[platforms.vsmile]
+name = "VTech V.Smile"
+extensions = [ ".bin", ".7z", ".zip",]
+
+[platforms.wasm4]
+name = "WASM-4 Fantasy Console"
+extensions = [ ".wasm", ".7z", ".zip",]
+
+[platforms.wii]
+name = "Nintendo Wii"
+extensions = [ ".ciso", ".dff", ".dol", ".elf", ".gcm", ".gcz", ".iso", ".json", ".m3u", ".rvz", ".tgc", ".wad", ".wbfs", ".wia", ".7z", ".zip",]
+igdb = 5
+
+[platforms.wiiu]
+name = "Nintendo Wii U"
+extensions = [ ".elf", ".rpx", ".tmd", ".wua", ".wud", ".wuhb", ".wux",]
+igdb = 41
+
+[platforms.windows]
+name = "Microsoft Windows"
+extensions = [ ".appimage", ".desktop", ".sh",]
+
+[platforms.windows3x]
+name = "Microsoft Windows 3.x"
+extensions = [ ".appimage", ".bat", ".desktop", ".dosz", ".sh", ".7z", ".zip",]
+
+[platforms.windows9x]
+name = "Microsoft Windows 9x"
+extensions = [ ".appimage", ".bat", ".desktop", ".dosz", ".sh", ".7z", ".zip",]
+
+[platforms.wonderswan]
+name = "Bandai WonderSwan"
+extensions = [ ".pc2", ".ws", ".7z", ".zip",]
+igdb = 57
+
+[platforms.wonderswancolor]
+name = "Bandai WonderSwan Color"
+extensions = [ ".pc2", ".ws", ".wsc", ".7z", ".zip",]
+igdb = 123
+
+[platforms.x1]
+name = "Sharp X1"
+extensions = [ ".2d", ".2hd", ".88d", ".cmd", ".d88", ".dup", ".dx1", ".hdm", ".tap", ".tfd", ".xdf", ".7z", ".zip",]
+igdb = 77
+
+[platforms.x68000]
+name = "Sharp X68000"
+extensions = [ ".2hd", ".88d", ".cmd", ".d88", ".dim", ".dup", ".hdf", ".hdm", ".img", ".m3u", ".xdf", ".7z", ".zip",]
+igdb = 121
+
+[platforms.xbox]
+name = "Microsoft Xbox"
+extensions = [ ".iso", ".xiso",]
+igdb = 11
+
+[platforms.xbox360]
+name = "Microsoft Xbox 360"
+extensions = [ ".", ".desktop", ".iso", ".sh", ".xex", ".zar",]
+igdb = 12
+
+[platforms.xboxone]
+name = "Microsoft Xbox One"
+extensions = [ ".7z", ".zip",]
+igdb = 49
+
+[platforms.zmachine]
+name = "Infocom Z-machine"
+extensions = [ ".dat", ".z1", ".z2", ".z3", ".z4", ".z5", ".z6", ".z7", ".z8", ".zlb", ".zblorb",]
+
+[platforms.zx81]
+name = "Sinclair ZX81"
+extensions = [ ".p", ".tzx", ".7z", ".zip",]
+igdb = 373
+
+[platforms.zxnext]
+name = "Sinclair ZX Spectrum Next"
+extensions = [ ".nex", ".sna",]
+
+[platforms.zxspectrum]
+name = "Sinclair ZX Spectrum"
+extensions = [ ".dsk", ".gz", ".img", ".mgt", ".rzx", ".scl", ".sh", ".sna", ".szx", ".tap", ".trd", ".tzx", ".udi", ".z80", ".7z", ".zip",]
