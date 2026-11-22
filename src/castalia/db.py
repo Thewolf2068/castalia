@@ -53,7 +53,7 @@ def init_schema(conn: sqlite3.Connection) -> sqlite3.Connection:
     cur.execute("""
         CREATE TABLE IF NOT EXISTS rom_file(
             id INTEGER PRIMARY KEY,
-            file_name TEXT NOT NULL
+            file_name TEXT NOT NULL,
             game_id INTEGER REFERENCES game(igdb_id) ON DELETE CASCADE,
             platform_id TEXT NOT NULL REFERENCES platform(id) ON DELETE CASCADE,
             size INTEGER,
@@ -68,11 +68,12 @@ def seed_platforms(conn: sqlite3.Connection, data: dict[str, Any]) -> sqlite3.Co
     for platform_id, info in data["platforms"].items():
         cur.execute( 
                     """
-                    INSERT INTO platform(id, name) VALUES (?, ?)
+                    INSERT INTO platform(id, name, igdb_platform_id) VALUES (?, ?, ?)
                     ON CONFLICT (id) DO UPDATE SET
-                        name = excluded.name;
+                        name = excluded.name,
+                        igdb_platform_id = excluded.igdb_platform_id;
                     """,
-                    (platform_id, info["name"])
+                    (platform_id, info["name"], info.get("igdb"))
                     )
     conn.commit()
     return conn
@@ -142,7 +143,7 @@ def main():
     conn = init_schema(conn)
     conn = seed_platforms(conn, load_platforms())
     cur = conn.cursor()
-    for row in cur.execute("SELECT id, name FROM platform "):
+    for row in cur.execute("SELECT * FROM platform "):
         print(row)
     conn.close()
 
