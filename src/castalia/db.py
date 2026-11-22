@@ -2,6 +2,7 @@ import sqlite3
 import tomllib
 from pathlib import Path
 from typing import Any
+import os
 
 
 PLATFORMS_TOML = Path(__file__).parent / "data" / "platforms.toml"
@@ -12,7 +13,7 @@ def connect(path:str) -> sqlite3.Connection:
     cur.execute("PRAGMA foreign_keys = ON;")
     return conn
 
-def init_schema(conn:sqlite3.Connection) -> sqlite3.Connection:
+def init_schema(conn: sqlite3.Connection) -> sqlite3.Connection:
     cur = conn.cursor()
 
     cur.execute("""
@@ -52,16 +53,17 @@ def init_schema(conn:sqlite3.Connection) -> sqlite3.Connection:
     cur.execute("""
         CREATE TABLE IF NOT EXISTS rom_file(
             id INTEGER PRIMARY KEY,
-            path TEXT NOT NULL UNIQUE,
+            file_name TEXT NOT NULL
             game_id INTEGER REFERENCES game(igdb_id) ON DELETE CASCADE,
             platform_id TEXT NOT NULL REFERENCES platform(id) ON DELETE CASCADE,
-            size INTEGER
+            size INTEGER,
+            UNIQUE(file_name, platform_id)
         )
     """)
     conn.commit()
     return conn
 
-def seed_platforms(conn:sqlite3.Connection, data: dict[str, Any]) -> sqlite3.Connection:
+def seed_platforms(conn: sqlite3.Connection, data: dict[str, Any]) -> sqlite3.Connection:
     cur = conn.cursor()
     for platform_id, info in data["platforms"].items():
         cur.execute( 
@@ -79,7 +81,7 @@ def load_platforms(path: Path = PLATFORMS_TOML) -> dict[str, Any]:
     with open(path, "rb") as f:
         return tomllib.load(f)
 
-def upsert_game(conn:sqlite3.Connection, igdb_id: int, name: str, fetched_at: int | None = None,
+def upsert_game(conn: sqlite3.Connection, igdb_id: int, name: str, fetched_at: int | None = None,
                 first_release_date: int | None = None, summary: str | None = None) -> None:
     cur = conn.cursor()
     cur.execute(
@@ -117,6 +119,23 @@ def add_alt_name(conn: sqlite3.Connection, game_id: int, name: str,
             """,
             (game_id, name, name.casefold(), kind, region)
             )
+
+def add_rom_file(conn: sqlite3.Connection, path: Path, platform_id: str, game_id: int | None = None) -> None:
+    size = os.path.getsize(path) # This will be so fucking complicated for multi disc roms omgbruh
+    filename = path.name
+    cur = conn.cursor()
+    cur.execute(
+
+            """
+            INSERT INTO rom_file(file_name, game_id, platform_id, size) VALUES (?, ?, ?, ?)
+            ON CONFLICT (file_name, platform_id) DO UPDATE SET
+                game_id = excluded.game_id,
+                size = excluded.size;
+
+            """,
+            (filename, game_id, platform_id, size)
+            )
+
 
 def main():
     conn = connect(r"sql.db")
