@@ -18,6 +18,11 @@ build-backend = "uv_build"
 
 [tool.basedpyright]
 reportUnusedCallResult = false
+reportUnknownVariableType = false
+reportUnknownMemberType = false
+reportAny = false
+reportExplicitAny = false
+reportUnknownArgumentType = false
 
 [dependency-groups]
 dev = [

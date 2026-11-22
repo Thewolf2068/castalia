@@ -1,5 +1,4 @@
 import sqlite3
-import time
 import tomllib
 from pathlib import Path
 from typing import Any
@@ -16,11 +15,49 @@ def connect(path:str) -> sqlite3.Connection:
 def init_schema(conn:sqlite3.Connection) -> sqlite3.Connection:
     cur = conn.cursor()
 
-    cur.execute("CREATE TABLE IF NOT EXISTS game (igdb_id INTEGER PRIMARY KEY, name TEXT NOT NULL, summary TEXT, first_release_date INTEGER, fetched_at INTEGER)")
-    cur.execute("CREATE TABLE IF NOT EXISTS platform (id TEXT PRIMARY KEY NOT NULL, name TEXT NOT NULL, igdb_platform_id INTEGER)")
-    cur.execute("CREATE TABLE IF NOT EXISTS game_platform (game_id INTEGER NOT NULL REFERENCES game(igdb_id) ON DELETE CASCADE, platform_id TEXT NOT NULL REFERENCES platform(id) ON DELETE CASCADE, PRIMARY KEY(game_id, platform_id))")
-    cur.execute("CREATE TABLE IF NOT EXISTS alt_name(id INTEGER PRIMARY KEY, game_id INTEGER NOT NULL REFERENCES game(igdb_id) ON DELETE CASCADE, name TEXT NOT NULL, normalized_name TEXT, region TEXT)")
-    cur.execute("CREATE TABLE IF NOT EXISTS rom_file(id INTEGER PRIMARY KEY, path TEXT NOT NULL UNIQUE, game_id INTEGER REFERENCES game(igdb_id) ON DELETE CASCADE, platform_id TEXT NOT NULL REFERENCES platform(id) ON DELETE CASCADE, size INTEGER)")
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS game(
+            igdb_id INTEGER PRIMARY KEY, 
+            name TEXT NOT NULL, 
+            summary TEXT, 
+            first_release_date INTEGER,
+            fetched_at INTEGER
+        )
+    """)
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS platform(
+            id TEXT PRIMARY KEY NOT NULL, 
+            name TEXT NOT NULL, 
+            igdb_platform_id INTEGER
+        )
+    """)
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS game_platform(
+            game_id INTEGER NOT NULL REFERENCES game(igdb_id) ON DELETE CASCADE,
+            platform_id TEXT NOT NULL REFERENCES platform(id) ON DELETE CASCADE,
+            PRIMARY KEY(game_id, platform_id)
+        )
+    """)
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS alt_name(
+            id INTEGER PRIMARY KEY,
+            game_id INTEGER NOT NULL REFERENCES game(igdb_id) ON DELETE CASCADE, 
+            name TEXT NOT NULL, 
+            normalized_name TEXT, 
+            kind TEXT,
+            region TEXT,
+            UNIQUE(game_id, name)
+        )
+    """)
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS rom_file(
+            id INTEGER PRIMARY KEY,
+            path TEXT NOT NULL UNIQUE,
+            game_id INTEGER REFERENCES game(igdb_id) ON DELETE CASCADE,
+            platform_id TEXT NOT NULL REFERENCES platform(id) ON DELETE CASCADE,
+            size INTEGER
+        )
+    """)
     conn.commit()
     return conn
 
@@ -67,7 +104,19 @@ def link_game_platform(conn: sqlite3.Connection, game_id: int, platform_id: str)
             (game_id, platform_id)
             )
 
+def add_alt_name(conn: sqlite3.Connection, game_id: int, name: str, 
+                 kind: str | None = None, region: str | None = None) -> None:
+    cur = conn.cursor()
+    cur.execute(
+            """
+            INSERT INTO alt_name(game_id, name, normalized_name, kind, region) VALUES (?, ?, ?, ?, ?)
+            ON CONFLICT (game_id, name) DO UPDATE SET
+                kind = excluded.kind,
+                region = excluded.region;
 
+            """,
+            (game_id, name, name.casefold(), kind, region)
+            )
 
 def main():
     conn = connect(r"sql.db")
