@@ -1,6 +1,4 @@
 import toml
-import sys
-import time
 import requests
 import xml.etree.ElementTree as ET
 
