@@ -1,0 +1,9 @@
+[library]
+path = "~/Roms"
+
+[database]
+path = "~/.config/castalia/castalia.db"
+
+[igdb]
+client_id = "This is a fake CLIENT ID"
+client_secret = " THIS IS A FAKe SECRET AAHHHHHH"

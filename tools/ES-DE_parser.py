@@ -1,7 +1,10 @@
 import toml
+import sys
+import time
 import requests
 import xml.etree.ElementTree as ET
 
+urlPlatforms = "https://api.igdb.com/v4/platforms"
 
 def loadXML():
     url = (
@@ -42,6 +45,22 @@ def parseXML(xmlfile: str) -> None:
             if extension not in output["platforms"][platform]["extensions"]:
                 output["platforms"][platform]["extensions"].append(extension)
 
+def get_igdb_ids(client_id: str, bearer_secret: str) -> None:
+    bearer_secret = f"Bearer {bearer_secret}"
+    for platform, data in output["platforms"].items():
+        fullname = data["name"]
+
+
+        headers={'CLIENT-ID': client_id, 'Authorization': bearer_secret }
+
+        x = requests.post(urlPlatforms, headers=headers, data=f'search "{platform}"; fields name, slug;')
+        
+        returnJson = x.json()
+        output["platforms"][platform]["igdb"] = returnJson[0]["id"]
+        time.sleep(1)
+
+        
+
 
 def main():
     global output
@@ -54,8 +73,11 @@ def main():
 
     parseXML("es_systems.xml")
 
+    get_igdb_ids(sys.argv[1], sys.argv[2])
+
     with open("platforms.toml", "w") as f:
         toml.dump(output, f)
+
 
 
 if __name__ == "__main__":

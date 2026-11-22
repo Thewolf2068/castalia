@@ -7,7 +7,10 @@ authors = [
     { name = "TheWolf2068", email = "29edt9l2@4wrd.cc" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "requests>=2.34.2",
+    "toml>=0.10.2",
+]
 
 [project.scripts]
 castalia = "castalia:main"

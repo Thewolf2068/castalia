@@ -45,7 +45,7 @@ def init_schema(conn: sqlite3.Connection) -> sqlite3.Connection:
             game_id INTEGER NOT NULL REFERENCES game(igdb_id) ON DELETE CASCADE, 
             name TEXT NOT NULL, 
             normalized_name TEXT, 
-            kind TEXT,
+            comment TEXT,
             region TEXT,
             UNIQUE(game_id, name)
         )
@@ -107,17 +107,17 @@ def link_game_platform(conn: sqlite3.Connection, game_id: int, platform_id: str)
             )
 
 def add_alt_name(conn: sqlite3.Connection, game_id: int, name: str, 
-                 kind: str | None = None, region: str | None = None) -> None:
+                 comment: str | None = None, region: str | None = None) -> None:
     cur = conn.cursor()
     cur.execute(
             """
-            INSERT INTO alt_name(game_id, name, normalized_name, kind, region) VALUES (?, ?, ?, ?, ?)
+            INSERT INTO alt_name(game_id, name, normalized_name, comment, region) VALUES (?, ?, ?, ?, ?)
             ON CONFLICT (game_id, name) DO UPDATE SET
-                kind = excluded.kind,
+                comment = excluded.comment,
                 region = excluded.region;
 
             """,
-            (game_id, name, name.casefold(), kind, region)
+            (game_id, name, name.casefold(), comment, region)
             )
 
 def add_rom_file(conn: sqlite3.Connection, path: Path, platform_id: str, game_id: int | None = None) -> None:
