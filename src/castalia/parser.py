@@ -13,6 +13,7 @@ class IGDBGame(TypedDict):
     name: str
 
 class SimilarityGames(TypedDict):
+    id: int
     name: str
     percentage_similarity: str 
     similarity: float
@@ -36,7 +37,6 @@ def search_game(rom_title: str, extensions: list[str], platform_id: int,
 def compare_titles(rom_title: str, extensions: list[str], fetched_names: list[IGDBGame]) -> list[SimilarityGames]:
     cleaned_rom_title = comparison_title(rom_title, extensions)
     cleaned_rom_title = normalize_title(cleaned_rom_title)
-    print(f"searched for {cleaned_rom_title}")
     diffed_games: list[SimilarityGames] = []
     for game in fetched_names:
         similarity = SequenceMatcher(None, cleaned_rom_title.casefold(), game["name"].casefold()).ratio()
@@ -44,7 +44,8 @@ def compare_titles(rom_title: str, extensions: list[str], fetched_names: list[IG
         diffed_games.append({
             "name": game["name"],
             "percentage_similarity": percentage_similarity,
-            "similarity": similarity
+            "similarity": similarity,
+            "id": game["id"]
             })
     diffed_games.sort(key=lambda game: game["similarity"], reverse=True)
     return diffed_games
@@ -67,8 +68,8 @@ def main():
     client_id = sys.argv[1]
     bearer_token = sys.argv[2]
     rom_name = "Legend of Zelda, The (USA).zip"
-    rom_region = 19
-    searched_games = search_game(rom_name, [".zip"], rom_region, client_id, bearer_token )
+    rom_platform = 19
+    searched_games = search_game(rom_name, [".zip"], rom_platform, client_id, bearer_token )
     diffed_titles = compare_titles(rom_name, [".zip"], searched_games)
     for title in diffed_titles:
         print(f"[ {title["percentage_similarity"]} ]: {title["name"]}")
