@@ -4,10 +4,12 @@ from pathlib import Path
 from typing import Any
 import os
 
+from castalia.config import find_castalia_dir
 
-PLATFORMS_TOML = Path(__file__).parent / "data" / "platforms.toml"
 
-def connect(path:str) -> sqlite3.Connection:
+PLATFORMS_TOML = find_castalia_dir() / "platoforms.toml"
+
+def connect(path: Path) -> sqlite3.Connection:
     conn = sqlite3.connect(path)
     cur = conn.cursor()
     cur.execute("PRAGMA foreign_keys = ON;")
@@ -57,6 +59,7 @@ def init_schema(conn: sqlite3.Connection) -> sqlite3.Connection:
             game_id INTEGER REFERENCES game(igdb_id) ON DELETE CASCADE,
             platform_id TEXT NOT NULL REFERENCES platform(id) ON DELETE CASCADE,
             size INTEGER,
+            extension TEXT NOT NULL
             UNIQUE(file_name, platform_id)
         )
     """)
@@ -121,25 +124,25 @@ def add_alt_name(conn: sqlite3.Connection, game_id: int, name: str,
             (game_id, name, name.casefold(), comment, region)
             )
 
-def add_rom_file(conn: sqlite3.Connection, path: Path, platform_id: str, game_id: int | None = None) -> None:
+def add_rom_file(conn: sqlite3.Connection, path: Path, platform_id: str, extension: str, game_id: int | None = None) -> None:
     size = os.path.getsize(path) # This will be so fucking complicated for multi disc roms omgbruh
     filename = path.name
     cur = conn.cursor()
     cur.execute(
 
             """
-            INSERT INTO rom_file(file_name, game_id, platform_id, size) VALUES (?, ?, ?, ?)
+            INSERT INTO rom_file(file_name, game_id, platform_id, size, extension) VALUES (?, ?, ?, ?, ?)
             ON CONFLICT (file_name, platform_id) DO UPDATE SET
                 game_id = excluded.game_id,
                 size = excluded.size;
 
             """,
-            (filename, game_id, platform_id, size)
+            (filename, game_id, platform_id, size, extension)
             )
 
 
 def main():
-    conn = connect(r"sql.db")
+    conn = connect(Path("sql.db"))
     conn = init_schema(conn)
     conn = seed_platforms(conn, load_platforms())
     cur = conn.cursor()
