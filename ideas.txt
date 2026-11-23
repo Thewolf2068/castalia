@@ -1,0 +1,5 @@
+Use typer spinner while scraping entries
+Use rich to accentuate high vs low percentages matches (with ID shown)
+Use ask with prompt to make the experience feel like beets
+
+idk yet how to link all of them together, that will be a major hurdle i htink:w
