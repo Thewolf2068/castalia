@@ -1,12 +1,22 @@
+from ftplib import error_reply
 import sys
 import time
 from difflib import SequenceMatcher
 import requests
 from typing import TypedDict
 from castalia.filename_variants import analyze, comparison_title
+from rich import print
 
 gamesURL = "https://api.igdb.com/v4/games"
 
+class IGDBError(Exception):
+    """Base class for all IGDB problems."""
+
+class IGDBFatalError(IGDBError):
+    """Pointless to continue: offline, bad token, rate limited."""
+
+class IGDBRequestError(IGDBError):
+    """Only this one request failed (e.g. a 500)."""
 
 class IGDBGame(TypedDict):
     id: int
@@ -26,7 +36,22 @@ def search_game(rom_title: str, extensions: list[str], platform_id: int,
     output = {}
     for game in analysis.candidates:
         body = f"search \"{game}\"; fields name, id; where platforms = ({platform_id});"
-        search = requests.post(gamesURL, headers=authentication, data=body)
+        try:
+            search = requests.post(gamesURL, headers=authentication, data=body, timeout=10)
+            search.raise_for_status()
+        except requests.exceptions.Timeout as err:
+            raise IGDBFatalError("Connection timeout") from err
+        except requests.exceptions.ConnectionError as err:
+            raise IGDBFatalError("Connection error. Are you online? Is IGDB accessible through a browser?")
+        except requests.exceptions.HTTPError as err:
+            status = err.response.status_code if err.response is not None else None
+            match status:
+                case 401:
+                    raise IGDBFatalError("Token expired or/and invalid. Try regenerating") from err
+                case 429:
+                    raise IGDBFatalError("Too many requests") from err
+                case _:
+                    raise IGDBRequestError(f"Miscellaneous error code: {status}")
         data: list[IGDBGame] = search.json()
         for game in data:
             output[game["id"]] = game

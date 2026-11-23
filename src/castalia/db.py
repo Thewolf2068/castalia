@@ -59,7 +59,6 @@ def init_schema(conn: sqlite3.Connection) -> sqlite3.Connection:
             game_id INTEGER REFERENCES game(igdb_id) ON DELETE CASCADE,
             platform_id TEXT NOT NULL REFERENCES platform(id) ON DELETE CASCADE,
             size INTEGER,
-            extension TEXT NOT NULL,
             UNIQUE(file_name, platform_id)
         )
     """)
@@ -124,20 +123,20 @@ def add_alt_name(conn: sqlite3.Connection, game_id: int, name: str,
             (game_id, name, name.casefold(), comment, region)
             )
 
-def add_rom_file(conn: sqlite3.Connection, path: Path, platform_id: str, extension: str, game_id: int | None = None) -> None:
+def add_rom_file(conn: sqlite3.Connection, path: Path, platform_id: str, game_id: int | None = None) -> None:
     size = os.path.getsize(path) # This will be so fucking complicated for multi disc roms omgbruh
     filename = path.name
     cur = conn.cursor()
     cur.execute(
 
             """
-            INSERT INTO rom_file(file_name, game_id, platform_id, size, extension) VALUES (?, ?, ?, ?, ?)
+            INSERT INTO rom_file(file_name, game_id, platform_id, size) VALUES (?, ?, ?, ?)
             ON CONFLICT (file_name, platform_id) DO UPDATE SET
                 game_id = excluded.game_id,
                 size = excluded.size;
 
             """,
-            (filename, game_id, platform_id, size, extension)
+            (filename, game_id, platform_id, size)
             )
 
 

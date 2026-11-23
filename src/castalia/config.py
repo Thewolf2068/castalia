@@ -1,4 +1,5 @@
 import json
+import toml
 import os
 import time
 import tomllib
@@ -73,6 +74,35 @@ def get_token(directory: Path, config: dict[str, Any]) -> str:
 
     return keys["bearer_token"]
 
+def get_db_location(config_directory: Path) -> Path:
+    with open(config_directory / "config.toml", 'r') as f:
+        config_file = toml.load(f)
+    try:
+        return Path(config_file['database']['path']).expanduser().resolve()
+    except KeyError:
+        print(f"[yellow]no database location set in {config_directory / "config.toml"}, used/created {config_directory / "sql.db"} as fallback[/yellow]")
+        return config_directory / "sql.db"
+
+def get_library_location(config_directory: Path) -> Path:
+    library = Path("~/Roms").expanduser().resolve()
+    with open(config_directory / "config.toml", 'r') as f:
+        config_file = toml.load(f)
+
+    library = Path(config_file['library']['path']).expanduser().resolve()
+    return library
+
+def get_authentication_clean(config_directory: Path) -> tuple[str, str]:
+    output: tuple[str, str] = "", ""
+    with open(config_directory / "config.toml", 'r') as f:
+        config_file = toml.load(f)
+
+    client_id = config_file['igdb']['client_id']
+
+    config_file= load_config(config_directory)
+    bearer_token = get_token(config_directory, config_file)
+
+    output = client_id, bearer_token
+    return output
 
 def main() -> None:
     directory = find_castalia_dir()

@@ -3,7 +3,7 @@ import typer
 from castalia import *
 from pathlib import Path
 
-from castalia.manager import import_path
+from castalia.importer import import_path
 
 app = typer.Typer()
 
@@ -29,7 +29,7 @@ def import_command(
         bool,
         typer.Option("--dry-run", "-d", help="Simulates execution without changing anything permanently")
     ] = False,
-):
+    ):
     rom_location = input.expanduser().resolve()
     import_path(rom_location, platform, recursive, dry)
 
