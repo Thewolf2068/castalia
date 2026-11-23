@@ -1,5 +1,7 @@
 from pathlib import Path
+import hashlib
 import shutil
+import tempfile
 from rich.console import Console
 from castalia import config, db, library, parser, selector, platforms
 from castalia.parser import SimilarityGames
@@ -25,17 +27,6 @@ def extract_valid_list_of_roms(directory: Path, extensions: list[str], recursive
 
 
 
-def db_entry(db_location: Path) -> sqlite3.Connection:
-    db_exists = os.path.isfile(db_location)
-
-    conn = db.connect(db_location)
-    conn = db.init_schema(conn)
-    if db_exists == False:
-        conn = db.seed_platforms(conn, db.load_platforms())
-    conn.execute("PRAGMA foreign_keys = ON;")
-    return conn
-
-
 def add_game_to_db(db_location: Path, game: SimilarityGames,
                    platform: str, rom: Path):
     game_igdb_id = game["id"]
@@ -55,7 +46,7 @@ def add_game_to_db(db_location: Path, game: SimilarityGames,
 
 
 def import_path(path: Path, platform: str, recursive: bool = False, dry : bool = False):
-    config_directory = config.find_castalia_dir()
+    config_directory = config.get_castalia_dir()
     platforms_location = config_directory / "platforms.toml"
     platform_id = platforms.get_platform_id(platform, platforms_location)
     client_id, bearer_token = config.get_authentication_clean(config_directory)
@@ -101,17 +92,16 @@ def import_file(moved_location: Path, rom: Path, db_location: Path, selected_tit
         #extrapolate the stuff because i am too prideful to pass them as arguments
         platform = moved_location.parent.name
         try:
-            shutil.move(rom, moved_location)
-        except OSError as err:
-            print(f"[bold red]Failed to move rom to destination '{moved_location.parent.name}': {err}[/bold red]")
-            return
+            verified_move(rom, moved_location)
+        except IOError as err:
+            raise IOError(f"[bold red]Failed to move rom to destination '{moved_location.parent.name}': {err}[/bold red]")
         
         try:
             add_game_to_db(db_location, selected_title, platform, moved_location)
         except sqlite3.Error as err:
             print(f"[bold red]something broke fuck you: {err}[/bold red]")
             try:
-                shutil.move (moved_location, rom)
+                verified_move (moved_location, rom)
             except OSError as err:
                 print(f"[bold red]Could not move it back. The file is now at {escape(str(moved_location))}[/bold red]")
             return
@@ -133,6 +123,37 @@ def process_file(directory: Path, platform_id: int,
 
     return selected_title, file
 
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+
+    with path.open("rb") as f:
+        while chunk := f.read(1024 * 1024):
+            digest.update(chunk)
+
+    return digest.hexdigest()
+
+def verified_move(src: Path, dst: Path):
+    fd, temp_name = tempfile.mkstemp(dir=dst.parent, prefix=f".{dst.name}.", suffix=".tmp")
+    os.close(fd)
+
+    temp = Path(temp_name)
+
+    try:
+        shutil.copy2(src, temp)
+        with temp.open("rb") as f:
+            os.fsync(f.fileno())
+        source_hash = sha256_file(src)
+        destination_hash = sha256_file(temp)
+
+        if source_hash != destination_hash:
+            raise IOError("File verification failed: SHA-256 mismatch")
+        
+        os.replace(temp, dst)
+        src.unlink()
+    finally:
+        if temp.exists():
+            temp.unlink()
 
 
 def main():

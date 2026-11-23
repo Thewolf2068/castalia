@@ -14,7 +14,7 @@ KEYS_FILE = "keys.json"
 EXPIRY_MARGIN = 60  # refresh the token this many seconds before it expires
 
 
-def find_castalia_dir() -> Path:
+def get_castalia_dir() -> Path:
     env = os.environ.get(ENV_VAR)
     if env:
         directory = Path(env).expanduser()
@@ -53,8 +53,10 @@ def save_keys(directory: Path, keys: dict[str, Any]) -> None:
     fd = os.open(tmp_path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
     with os.fdopen(fd, "w", encoding="utf-8") as f:
         json.dump(keys, f)
-
-    os.replace(tmp_path, keys_path)
+    try:
+        os.replace(tmp_path, keys_path)
+    except OSError as err:
+        raise OSError(f"Issue updating oauth keys: {err}")
 
 
 def get_token(directory: Path, config: dict[str, Any]) -> str:
@@ -84,30 +86,34 @@ def get_db_location(config_directory: Path) -> Path:
         return config_directory / "sql.db"
 
 def get_library_location(config_directory: Path) -> Path:
-    library = Path("~/Roms").expanduser().resolve()
     with open(config_directory / "config.toml", 'r') as f:
         config_file = toml.load(f)
 
-    library = Path(config_file['library']['path']).expanduser().resolve()
-    return library
+    try:
+        return Path(config_file['library']['path']).expanduser().resolve()
+    except KeyError:
+        return Path("~/Roms").expanduser().resolve()
+
 
 def get_authentication_clean(config_directory: Path) -> tuple[str, str]:
     output: tuple[str, str] = "", ""
     with open(config_directory / "config.toml", 'r') as f:
         config_file = toml.load(f)
+    try:
+        client_id = config_file['igdb']['client_id']
+    except KeyError as e:
+        raise ValueError(f"Missing required Client-ID: {e}. Did you read the Docs?") from e
 
-    client_id = config_file['igdb']['client_id']
 
-    config_file= load_config(config_directory)
+    config_file = load_config(config_directory)
     bearer_token = get_token(config_directory, config_file)
 
     output = client_id, bearer_token
     return output
 
 def main() -> None:
-    directory = find_castalia_dir()
-    config = load_config(directory)
-    token = get_token(directory, config)
+    config = load_config(get_castalia_dir())
+    token = get_token(get_castalia_dir(), config)
     verify_bearer_token(config["igdb"]["client_id"], token)
 
 

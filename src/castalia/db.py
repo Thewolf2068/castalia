@@ -4,10 +4,10 @@ from pathlib import Path
 from typing import Any
 import os
 
-from castalia.config import find_castalia_dir
+from castalia.config import get_castalia_dir
 
 
-PLATFORMS_TOML = find_castalia_dir() / "platforms.toml"
+PLATFORMS_TOML = get_castalia_dir() / "platforms.toml"
 
 def connect(path: Path) -> sqlite3.Connection:
     conn = sqlite3.connect(path)
@@ -139,6 +139,15 @@ def add_rom_file(conn: sqlite3.Connection, path: Path, platform_id: str, game_id
             (filename, game_id, platform_id, size)
             )
 
+def db_entry(db_location: Path) -> sqlite3.Connection:
+    db_exists = os.path.isfile(db_location)
+
+    conn = connect(db_location)
+    conn = init_schema(conn)
+    if db_exists == False:
+        conn = seed_platforms(conn, load_platforms())
+    conn.execute("PRAGMA foreign_keys = ON;")
+    return conn
 
 def main():
     conn = connect(Path("sql.db"))

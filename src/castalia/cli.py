@@ -1,9 +1,12 @@
 from typing import Annotated
 import typer
-from castalia import *
 from pathlib import Path
+from typing import Annotated, Literal
+from rich.table import Table
+from rich.console import Console
 
-from castalia.importer import import_path
+from castalia.handlers import query
+from castalia.handlers import importer
 
 app = typer.Typer()
 
@@ -31,7 +34,39 @@ def import_command(
     ] = False,
     ):
     rom_location = input.expanduser().resolve()
-    import_path(rom_location, platform, recursive, dry)
+    importer.import_path(rom_location, platform, recursive, dry)
+
+@app.command()
+def search(
+    qualifier: Annotated[
+        Literal["game", "platform"],
+        typer.Argument(help="Where to search")
+    ],
+    search_content: Annotated[
+        str,
+        typer.Argument(help="What to search for")
+    ],
+    exact: Annotated[
+        bool,
+        typer.Option("-e", "--exact", help="Search only searches for exact search_content")
+    ] = False,
+):
+    match qualifier:
+        case "game":
+            titles: list[query.GameEntry] = query.get_matching_titles(search_content, exact)
+            table = Table()
+            table.add_column("IGDB ID", no_wrap=True)
+            table.add_column("Name", no_wrap=True)
+            table.add_column("Platform Identifier", no_wrap=True)
+
+            for game in titles:
+                table.add_row(f"{game["igdb_id"]}, {game["name"]}, {game["platform_id"]}")
+        case "platform":
+            platforms: list[query.PlatformEntry] = query.get_matching_platforms(search_content, exact)
+
+
+
+
 
 
 if __name__ == "__main__":
