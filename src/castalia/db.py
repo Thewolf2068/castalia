@@ -7,7 +7,7 @@ import os
 from castalia.config import find_castalia_dir
 
 
-PLATFORMS_TOML = find_castalia_dir() / "platoforms.toml"
+PLATFORMS_TOML = find_castalia_dir() / "platforms.toml"
 
 def connect(path: Path) -> sqlite3.Connection:
     conn = sqlite3.connect(path)
@@ -59,7 +59,7 @@ def init_schema(conn: sqlite3.Connection) -> sqlite3.Connection:
             game_id INTEGER REFERENCES game(igdb_id) ON DELETE CASCADE,
             platform_id TEXT NOT NULL REFERENCES platform(id) ON DELETE CASCADE,
             size INTEGER,
-            extension TEXT NOT NULL
+            extension TEXT NOT NULL,
             UNIQUE(file_name, platform_id)
         )
     """)

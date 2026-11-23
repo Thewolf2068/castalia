@@ -78,9 +78,11 @@ def add_game_to_db(db_location: Path, game: SimilarityGames, extension: str,
     db.upsert_game(conn, igdb_id=game_igdb_id, name=game_name)
     db.link_game_platform(conn, game_id=game_igdb_id, platform_id=platform)
     db.add_rom_file(conn, rom, platform_id=platform, extension=extension, game_id=game_igdb_id,)
+    conn.commit()
+    conn.close()
 
 
-def import_prep(path: Path, platform: str, recursive: bool = False, dry : bool = False):
+def import_path(path: Path, platform: str, recursive: bool = False, dry : bool = False):
     config_directory = config.find_castalia_dir()
     platforms_location = config_directory / "platforms.toml"
     platform_id = get_platform_id(platform, platforms_location)
@@ -102,8 +104,7 @@ def import_prep(path: Path, platform: str, recursive: bool = False, dry : bool =
         moved_location = platform_directory / final_name
         if dry == False:
             if selected_title:
-                add_game_to_db(db_location, selected_title, extension, platform, rom)
-                import_file(moved_location, rom)
+                import_file(moved_location, rom, db_location, selected_title)
             else:
                 print(f"[bold red]No Matches found for '{escape(str(rom))}'. Skipped[/bold red]")
         elif selected_title:
@@ -113,13 +114,15 @@ def import_prep(path: Path, platform: str, recursive: bool = False, dry : bool =
             # Explain that no resultst were found or something idk you figure it out asswipe
 
 
-def import_file(moved_location: Path, rom: Path):
+def import_file(moved_location: Path, rom: Path, db_location: Path, selected_title: SimilarityGames):
     library.create_directory_if_missing(moved_location.parent)
     if moved_location.exists():
         print(f"[bold red]File '{escape(str(moved_location))}' already exists. Skipping[/bold red]")
     else:
         #extrapolate the stuff because i am too prideful to pass them as arguments
-        platform = rom.parent.name
+        platform = moved_location.parent.name
+
+        add_game_to_db(db_location, selected_title, moved_location.suffix, platform, rom)
         shutil.move(rom, moved_location)
 
 
@@ -143,7 +146,7 @@ def process_file(directory: Path, platform_id: int,
 
 def main():
     rom_directory = Path("~/roms/psp/").expanduser().resolve()
-    import_prep(rom_directory, "psp", True, True)
+    import_path(rom_directory, "psp", True)
 
 
 

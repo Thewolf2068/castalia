@@ -5,7 +5,7 @@ from castalia.db import add_alt_name, add_rom_file, connect, init_schema, link_g
 
 @pytest.fixture
 def conn():
-    c = connect(":memory:")
+    c = connect(Path(":memory:"))
     init_schema(c)
     yield(c)
     c.close()
