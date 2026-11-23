@@ -1,6 +1,7 @@
 from rich import print
 from typing import final
 from rich.prompt import Prompt
+from rich.markup import escape
 
 from castalia.parser import SimilarityGames
 
@@ -10,7 +11,7 @@ class NextLinePrompt(Prompt):
 
 def list_options(titles: list[SimilarityGames], filename: str) -> SimilarityGames:
     i = 1
-    print(f"[underline]Searched for {filename}[/underline]")
+    print(f"[underline]Searched for {escape(filename)}[/underline]")
     for title in titles:
         similarity = round(title["similarity"] * 100, 2)
         if similarity >= 80:
@@ -19,9 +20,8 @@ def list_options(titles: list[SimilarityGames], filename: str) -> SimilarityGame
             color = "yellow"
         else:
             color = "bold red"
-        print(f"({i})[ [{color}]{title["percentage_similarity"]}[/{color}] ]: {title["name"]}")
+        print(f"({i})[ [{color}]{escape(title["percentage_similarity"])}[/{color}] ]: {escape(title["name"])}")
         i = i + 1
-    
     selection = int(NextLinePrompt.ask("Select the entry")) - 1
 
     return titles[selection]
