@@ -15,7 +15,7 @@ dependencies = [
 ]
 
 [project.scripts]
-castalia = "castalia:main"
+castalia = "castalia.cli:app"
 
 [build-system]
 requires = ["uv_build>=0.13.9,<0.14.0"]

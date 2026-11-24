@@ -1,6 +1,7 @@
 from castalia import config
 import sqlite3
 from typing import TypedDict
+from contextlib import closing
 
 class GameEntry(TypedDict):
     igdb_id: int
@@ -16,6 +17,7 @@ def establish_connection() -> sqlite3.Connection:
     db_location =  config.get_db_location(config.get_castalia_dir())
     try:
         conn = sqlite3.connect(db_location)
+        conn.row_factory = sqlite3.Row
     except sqlite3.Error as error:
         raise sqlite3.Error(f"Unable to connect to database: {error}")
         
@@ -25,60 +27,59 @@ def establish_connection() -> sqlite3.Connection:
 
 
 def get_matching_titles(title: str, exact: bool = False) -> list[GameEntry]:
-    conn = establish_connection()
-    output: list[GameEntry] = []
-    cur = conn.cursor()
     if exact:
-        query = "where name = "
+        condition = "name = ?"
+        param = title
     else:
-        query = "where name like "
-        title = f"%{title.casefold()}%"
-    cur.execute(f"""
-                SELECT igdb_id, name, platform_id
-                FROM game_platform 
-                inner join game on game_platform.game_id = game.igdb_id
-                {query} "?"
-                """,
-                (title)
-                )
-    for row in cur.fetchall():
-        entry: GameEntry = {
-                "igdb_id": row['igdb_id'],
-                "name": row['name'],
-                "platform_id": row['platform_id']
-                }
-        output.append(entry)
+        condition = "name LIKE ?"
+        param = f"%{title.casefold()}%"
+
+    output: list[GameEntry] = []
+    with closing(establish_connection()) as conn:
+        cur = conn.execute(
+            f"""
+            SELECT igdb_id, name, platform_id
+            FROM game_platform
+            INNER JOIN game ON game_platform.game_id = game.igdb_id
+            WHERE {condition}
+            """,
+            (param,),
+        )
+        for row in cur.fetchall():
+            entry: GameEntry = {
+                "igdb_id": row["igdb_id"],
+                "name": row["name"],
+                "platform_id": row["platform_id"],
+            }
+            output.append(entry)
     return output
 
 
 def get_matching_platforms(search: str, exact: bool = False) -> list[PlatformEntry]:
-    conn = establish_connection()
-    output: list[PlatformEntry] = []
-    cur = conn.cursor()
     if exact:
-        cur.execute("""
+        condition = "id = ? or name = ?"
+        param = search
+    else:
+        condition = "id LIKE ? or name LIKE ?"
+        param = f"%{search.casefold()}%"
+
+    output: list[PlatformEntry] = []
+    with closing(establish_connection()) as conn:
+        cur = conn.execute(f"""
                     SELECT id, name, igdb_platform_id
                     FROM platform
-                    where id = "?" or name = "?"
+                    WHERE {condition}
                     """,
-                    (search, search)
+                    (param, param)
                     )
 
-    else:
-        cur.execute("""
-                    SELECT id, name, igdb_platform_id
-                    FROM platform
-                    where id like '%?%' or name like '%?%'
-                    """,
-                    (search, search)
-                    )
-    for row in cur.fetchall():
-        entry: PlatformEntry = {
-                "platform_id": row['id'],
-                "name": row['name'],
-                "platform_igdb_id": row['igdb_platform_id']
-                }
-        output.append(entry)
+        for row in cur.fetchall():
+            entry: PlatformEntry = {
+                    "platform_id": row['id'],
+                    "name": row['name'],
+                    "platform_igdb_id": str(row['igdb_platform_id'])
+                    }
+            output.append(entry)
 
 
     return output

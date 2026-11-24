@@ -1,4 +1,3 @@
-from ftplib import error_reply
 import sys
 import time
 from difflib import SequenceMatcher

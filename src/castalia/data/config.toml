@@ -1,0 +1,9 @@
+[library]
+path = "~/Roms"
+
+[database]
+path = "~/.config/castalia/sql.db"
+
+[igdb]
+client_id = ""
+client_secret = ""
