@@ -15,9 +15,15 @@ console = Console()
 def extract_valid_list_of_roms(directory: Path, extensions: list[str], recursive: bool = False) -> list[Path]:
     output: list[Path] = []
     if recursive:
-        stuff = directory.rglob("*")
+        try:
+            stuff = directory.rglob("*")
+        except OSError as err:
+            raise OSError(f"Provided directory {directory} doesn't exist") from err
     else:
-        stuff = directory.iterdir()
+        try:
+            stuff = directory.iterdir()
+        except OSError as err:
+            raise OSError(f"Provided directory {directory} doesn't exist") from err
     for file in stuff:
         if file.suffix in extensions:
             output.append(file.expanduser().resolve())

@@ -5,7 +5,6 @@ from typing import Literal
 from rich.table import Table
 from rich.console import Console
 
-from castalia import config
 from castalia.handlers import query, importer, init
 
 app = typer.Typer()
@@ -13,10 +12,7 @@ app = typer.Typer()
 @app.callback()
 def main():
     """If you run just castalia"""
-    # config_dir = config.get_castalia_dir()
-    # output = config.ensure_castalia_dir(config_dir)
-    # if output:
-    #     print(f"First Run Detected. Don't forget to add your keys to {Path(config_dir / "config.toml")}")
+
 @app.command(name="init")
 def init_castalia():
     init.ensure_full_config()

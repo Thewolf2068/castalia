@@ -2,6 +2,7 @@ from castalia import config
 import sqlite3
 from typing import TypedDict
 from contextlib import closing
+from castalia import db
 
 class GameEntry(TypedDict):
     igdb_id: int
@@ -14,15 +15,8 @@ class PlatformEntry(TypedDict):
     platform_igdb_id: str
 
 def establish_connection() -> sqlite3.Connection:
-    db_location =  config.get_db_location(config.get_castalia_dir())
-    try:
-        conn = sqlite3.connect(db_location)
-        conn.row_factory = sqlite3.Row
-    except sqlite3.Error as error:
-        raise sqlite3.Error(f"Unable to connect to database: {error}")
-        
-    cur = conn.cursor()
-    cur.execute("PRAGMA foreign_keys = ON;")
+    db_location = config.get_db_location(config.get_castalia_dir())
+    conn = db.connect(db_location)
     return conn
 
 

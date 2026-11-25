@@ -5,14 +5,26 @@ from typing import Any
 import os
 
 from castalia.config import get_castalia_dir
+from castalia.errors import DatabaseError
 
 
 PLATFORMS_TOML = get_castalia_dir() / "platforms.toml"
 
 def connect(path: Path) -> sqlite3.Connection:
-    conn = sqlite3.connect(path)
-    cur = conn.cursor()
-    cur.execute("PRAGMA foreign_keys = ON;")
+    if not path.is_file():
+        raise DatabaseError(f"""
+            Database not found at {path}.\n
+            Have you run `castalia init` yet?\n
+            If you deleted it, re-run `castalia init`.
+                            """
+        )
+    try:
+        conn = sqlite3.connect(path)
+        conn.row_factory = sqlite3.Row
+        conn.execute("PRAGMA foreign_keys = ON;")
+    except sqlite3.Error as err:
+        raise DatabaseError(f"Unable to open database at {path}: {err}") from err
+
     return conn
 
 def init_schema(conn: sqlite3.Connection) -> sqlite3.Connection:

@@ -74,8 +74,11 @@ def get_token(directory: Path, config: dict[str, Any]) -> str:
     return keys["bearer_token"]
 
 def get_db_location(config_directory: Path) -> Path:
-    with open(config_directory / "config.toml", 'r') as f:
-        config_file = toml.load(f)
+    try:
+        with open(config_directory / "config.toml", 'r') as f:
+            config_file = toml.load(f)
+    except OSError as err:
+        raise OSError(f"config.toml is missing in {config_directory}. Have you run castalia init yet?") from err
     try:
         return Path(config_file['database']['path']).expanduser().resolve()
     except KeyError:
@@ -83,8 +86,11 @@ def get_db_location(config_directory: Path) -> Path:
         return config_directory / "sql.db"
 
 def get_library_location(config_directory: Path) -> Path:
-    with open(config_directory / "config.toml", 'r') as f:
-        config_file = toml.load(f)
+    try:
+        with open(config_directory / "config.toml", 'r') as f:
+            config_file = toml.load(f)
+    except OSError as err:
+        raise OSError(f"config.toml is missing in {config_directory}. Have you run castalia init yet?") from err
 
     try:
         return Path(config_file['library']['path']).expanduser().resolve()
@@ -94,8 +100,11 @@ def get_library_location(config_directory: Path) -> Path:
 
 def get_authentication_clean(config_directory: Path) -> tuple[str, str]:
     output: tuple[str, str] = "", ""
-    with open(config_directory / "config.toml", 'r') as f:
-        config_file = toml.load(f)
+    try:
+        with open(config_directory / "config.toml", 'r') as f:
+            config_file = toml.load(f)
+    except OSError as err:
+        raise OSError(f"config.toml is missing in {config_directory}. Have you run castalia init yet?") from err
     try:
         client_id = config_file['igdb']['client_id']
     except KeyError as e:

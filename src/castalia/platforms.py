@@ -17,11 +17,4 @@ def get_system_extensions(platforms_location: Path, platform: str) -> list[str]:
         platforms = toml.load(f)
     for extensions in platforms["platforms"][platform]["extensions"]:
         output.append(extensions)
-        return output
-
-
-
-    try:
-        return Path(config_file['library']['path']).expanduser().resolve()
-    except KeyError:
-        return Path("~/Roms").expanduser().resolve()
+    return output
