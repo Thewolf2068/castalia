@@ -4,7 +4,7 @@ import sqlite3
 from urllib3.exceptions import HTTPError
 from castalia import config, igdb_authenticator, db
 import toml
-import typer
+from rich.prompt import Prompt
 from rich import print
 
 DEFAULTS_DIR = resources.files("castalia") / "data" / "defaults"
@@ -60,10 +60,10 @@ def init_config(config_dir: Path):
         config_file =  toml.load(f)
     
     # Link will be changed to docs when i have those
-    print("Visit [link=https://google.com]the docs[/link]for help")
+    print("Visit [link=https://google.com]the docs[/link] for help")
 
-    client_id = typer.prompt("[yellow]Enter your Twitch Applications Client ID[/yellow]")
-    client_secret= typer.prompt("[yellow]Enter your Twitch Applications Client Secret[/yellow]")
+    client_id = Prompt.ask("[yellow]Enter your Twitch Applications Client ID[/yellow]")
+    client_secret= Prompt.ask("[yellow]Enter your Twitch Applications Client Secret[/yellow]")
 
     config_file['igdb']['client_id'] = client_id
     config_file['igdb']['client_secret'] = client_secret

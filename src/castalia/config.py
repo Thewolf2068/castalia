@@ -5,7 +5,6 @@ import time
 import tomllib
 from pathlib import Path
 from typing import Any
-from importlib import resources
 
 from castalia.igdb_authenticator import get_bearer_token
 
@@ -15,28 +14,11 @@ CONFIG_FILE = "config.toml"
 KEYS_FILE = "keys.json"
 EXPIRY_MARGIN = 60  # refresh the token this many seconds before it expires
 
-def ensure_castalia_dir(directory: Path) -> list[Path]:
-    directory.mkdir(parents=True, exist_ok=True)
-    defaults = resources.files("castalia") / "data" / "defaults"
-    created: list[Path] = []
-    for name in DEFAULT_FILES:
-        target = directory / name
-        try:
-            with open(target, "xb") as f:  # "x" fails if the file already exists
-                f.write((defaults / name).read_bytes())
-        except FileExistsError:
-            continue
-        created.append(target)
-    return created
 
 def get_castalia_dir() -> Path:
     env = os.environ.get(ENV_VAR)
     if env:
         directory = Path(env).expanduser().resolve()
-        if not directory.is_dir():
-            raise FileNotFoundError(
-                f"{ENV_VAR} points to a directory that does not exist: {directory}"
-            )
         return directory
 
     return Path.home() / ".config" / "castalia"
