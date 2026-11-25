@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 from importlib import resources
 
-from castalia.igdb_authenticator import get_bearer_token, verify_bearer_token
+from castalia.igdb_authenticator import get_bearer_token
 
 DEFAULT_FILES = ("config.toml", "platforms.toml")
 ENV_VAR = "CASTALIADIR"
@@ -17,7 +17,7 @@ EXPIRY_MARGIN = 60  # refresh the token this many seconds before it expires
 
 def ensure_castalia_dir(directory: Path) -> list[Path]:
     directory.mkdir(parents=True, exist_ok=True)
-    defaults = resources.files("castalia") / "data"
+    defaults = resources.files("castalia") / "data" / "defaults"
     created: list[Path] = []
     for name in DEFAULT_FILES:
         target = directory / name
@@ -32,7 +32,7 @@ def ensure_castalia_dir(directory: Path) -> list[Path]:
 def get_castalia_dir() -> Path:
     env = os.environ.get(ENV_VAR)
     if env:
-        directory = Path(env).expanduser()
+        directory = Path(env).expanduser().resolve()
         if not directory.is_dir():
             raise FileNotFoundError(
                 f"{ENV_VAR} points to a directory that does not exist: {directory}"
@@ -125,12 +125,3 @@ def get_authentication_clean(config_directory: Path) -> tuple[str, str]:
 
     output = client_id, bearer_token
     return output
-
-def main() -> None:
-    config = load_config(get_castalia_dir())
-    token = get_token(get_castalia_dir(), config)
-    verify_bearer_token(config["igdb"]["client_id"], token)
-
-
-if __name__ == "__main__":
-    main()
